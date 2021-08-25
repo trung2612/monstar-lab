@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Demo Form</title>
+	<link rel="stylesheet" type="text/css" href="asset/style/style.css" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="form-wrap">
+			<div class="form-header">
+				<h2>Demo Form With Love</h2>
+			</div>
+			<div class="form-body">
+				<form action="" method="POST" class="form" id="form">
+					<div class="name-element element">
+						<div class="cell firstname-cell">
+							<div class="form-title">
+								<label for="name">First Name</label>
+							</div>
+							<div class="form-content">
+								<input id="firstname" type="text" name="firstname" placeholder="Eren" />
+								<span class="form-message"></span>
+							</div>
+						</div>
+						<div class="cell lastname-cell">
+								<div class="form-title">
+									<label for="name">Last Name</label>
+								</div>
+								<div class="form-content">
+									<input id="lastname" type="text" name="lastname" placeholder="Yeager" />
+									<span class="form-message"></span>
+								</div>
+								
+							</div>
+					</div>
+					<div class="email-element element">
+						<div class="form-title">
+							<label for="email">Email</label>
+						</div>
+						<div class="form-content">
+							<input id="email" type="text" name="email" placeholder="apple@icloud.com" />
+							<span class="form-message"></span>
+						</div>
+					</div>
+					<div class="password-element element">
+						<div class="form-title">
+							<label for="password">Password</label>
+						</div>
+						<div class="form-content">
+							<input id="password" type="password" name="password" placeholder="********"/>
+							<span class="form-message"></span>
+						</div>
+					</div>
+					<div class="confirm-element element">
+							<div class="form-title">
+								<label for="confirm">Confirm</label>
+							</div>
+							<div class="form-content">
+								<input id="confirm" type="password" name="confirm" placeholder="********"/>
+								<span class="form-message"></span>
+							</div>
+						</div>
+						
+					<div class="footer">
+						<button id="submit">Đăng kí</button>
+						<!-- <input id="submit" type="submit" name="submit" value="Submit"/> -->
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="asset/js/script.js"></script>
+	<script>
+		Validator({
+			form: '#form',
+			errorSelector: '.form-message',
+			rules: [
+				Validator.isRequired('#firstname'),
+				Validator.isContainUpperCase('#firstname'),
+				Validator.isContainLowerCase('#firstname'),
+				Validator.isSpecialChar('#firstname'),
+				Validator.isRequired('#lastname'),
+				Validator.isContainUpperCase('#lastname'),
+				Validator.isContainLowerCase('#lastname'),
+				Validator.isSpecialChar('#lastname'),
+				Validator.isEmail('#email'),
+				Validator.minLength('#password', 6),
+				Validator.maxLength('#password', 32),
+				Validator.isRequired('#confirm'),
+				Validator.isConfirm('#confirm', function (){
+					return document.querySelector('#form #password').value;
+				},'Mật khẩu nhập lại không chính xác')
+			], onSubmit: function(data){
+				//call API
+				console.log(data);
+				alert("Chúc mừng bạn đã nhập xong các trường <3");
+			}
+		})
+	</script>
+</body>
+
+</html>
